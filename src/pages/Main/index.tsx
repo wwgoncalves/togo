@@ -1,6 +1,6 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useRef } from 'react';
 
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import Leaflet from 'leaflet';
 import { v4 as uuidv4 } from 'uuid';
 import AsyncSelect from 'react-select/async';
@@ -46,6 +46,15 @@ type Address = {
   label: string;
   value: string;
 };
+
+function SetViewOnPosition(props: any) {
+  const { coords } = props;
+
+  const map = useMap();
+  map.setView(coords, map.getZoom(), { animate: true });
+
+  return null;
+}
 
 const Main: React.FC = () => {
   const [placesToGo, setPlacesToGo] = useState<Places[]>([]);
@@ -163,8 +172,8 @@ const Main: React.FC = () => {
       </main>
 
       <MapContainer
-        center={location}
-        zoom={15}
+        center={initialPosition}
+        zoom={11}
         style={{ width: '100%', height: '100%' }}
       >
         <TileLayer
@@ -203,6 +212,7 @@ const Main: React.FC = () => {
               </Popup>
             </Marker>
           ))}
+        <SetViewOnPosition coords={location} />
       </MapContainer>
     </Container>
   );

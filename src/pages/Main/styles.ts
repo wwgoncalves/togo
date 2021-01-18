@@ -5,17 +5,17 @@ export const Container = styled.div`
   height: 100vh;
 
   form.landing-page-form {
-    width: 500px;
+    width: 400px;
 
-    background: #ffffff;
+    background: #fffa;
     border: 1px solid #d3e2e5;
     border-radius: 30px;
 
     padding: 20px 40px;
 
     position: absolute;
-    top: 30px;
-    left: 40px;
+    top: 10px;
+    left: 50px;
 
     z-index: 1;
   }
@@ -33,22 +33,22 @@ export const Container = styled.div`
 
     font-size: 32px;
     line-height: 34px;
-    color: #5c8599;
+    color: #6060f0;
     font-weight: 700;
 
     border-bottom: 1px solid #d3e2e5;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
   }
 
   form.landing-page-form .input-block + .input-block {
-    margin-top: 24px;
+    margin-top: 15px;
   }
 
   form.landing-page-form .input-block label {
     display: flex;
-    color: #8fa7b3;
-    margin-bottom: 8px;
+    color: #6060f0;
+    margin-bottom: 5px;
     line-height: 24px;
   }
 
@@ -65,22 +65,26 @@ export const Container = styled.div`
     border: 1px solid #d3e2e5;
     border-radius: 20px;
     outline: none;
-    color: #5c8599;
+    color: #333;
   }
 
   form.landing-page-form .input-block input {
     height: 44px;
     padding: 0 16px;
+
+    ::placeholder {
+      color: #ccc;
+    }
   }
 
   form.landing-page-form button.confirm-button {
     margin-top: 34px;
 
     width: 100%;
-    height: 64px;
+    height: 50px;
     border: 0;
     cursor: pointer;
-    background-color: #4254f5;
+    background-color: #6060f0;
     border-radius: 20px;
     color: #ffffff;
     font-weight: 800;
@@ -89,7 +93,7 @@ export const Container = styled.div`
   }
 
   form.landing-page-form button.confirm-button:hover {
-    background-color: #6c79f5;
+    background-color: #6060f0dd;
   }
 
   /* Marked location pop-up */
@@ -128,6 +132,10 @@ export const Container = styled.div`
     border-radius: 20px !important;
     outline: none !important;
     color: #5c8599 !important;
+  }
+
+  .filter__placeholder {
+    color: #ccc !important;
   }
 
   .filter__option {
