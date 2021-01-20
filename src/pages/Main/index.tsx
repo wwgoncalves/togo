@@ -36,6 +36,10 @@ interface Places {
   latitude: number;
   longitude: number;
 }
+// type Location = {
+//   lat: number;
+//   lng: number;
+// };
 
 type Position = {
   latitude: number;
@@ -59,7 +63,7 @@ function SetViewOnPosition(props: any) {
 const Main: React.FC = () => {
   const [placesToGo, setPlacesToGo] = useState<Places[]>([]);
 
-  const [location, setLocation] = useState(initialPosition);
+  // const [location, setLocation] = useState<Location | null>(null);
   const [position, setPosition] = useState<Position | null>(null);
 
   const [name, setName] = useState('');
@@ -85,10 +89,10 @@ const Main: React.FC = () => {
   };
 
   const handleChangeSelect = (event: any) => {
-    setLocation({
-      lat: event.coords[1],
-      lng: event.coords[0],
-    });
+    // setLocation({
+    //   lat: event.coords[1],
+    //   lng: event.coords[0],
+    // });
 
     setPosition({
       latitude: event.coords[1],
@@ -113,8 +117,8 @@ const Main: React.FC = () => {
         name,
         address: address?.value || '',
         complement,
-        latitude: location.lat,
-        longitude: location.lng,
+        latitude: position?.latitude || 0,
+        longitude: position?.longitude || 0,
       },
     ]);
 
@@ -129,7 +133,7 @@ const Main: React.FC = () => {
       <main>
         <form onSubmit={handleSubmit} className="landing-page-form">
           <fieldset>
-            <legend>Place to go:</legend>
+            <legend>Place to go</legend>
 
             <div className="input-block">
               <label htmlFor="name">Name</label>
@@ -145,12 +149,13 @@ const Main: React.FC = () => {
               <label htmlFor="address">Address</label>
               <AsyncSelect
                 id="address"
-                placeholder="Place's address"
+                placeholder="Place or place's address"
                 value={address}
                 onChange={handleChangeSelect}
                 classNamePrefix="filter"
                 cacheOptions
                 loadOptions={loadOptions}
+                noOptionsMessage={() => 'No options'}
               />
             </div>
 
@@ -158,7 +163,7 @@ const Main: React.FC = () => {
               <label htmlFor="complement">Complement</label>
               <input
                 id="complement"
-                placeholder="Number, building etc"
+                placeholder="Block, building, floor etc"
                 value={complement}
                 onChange={(event) => setComplement(event.target.value)}
               />
@@ -166,14 +171,14 @@ const Main: React.FC = () => {
           </fieldset>
 
           <button type="submit" className="confirm-button">
-            Confirm
+            Save
           </button>
         </form>
       </main>
 
       <MapContainer
         center={initialPosition}
-        zoom={11}
+        zoom={14}
         style={{ width: '100%', height: '100%' }}
       >
         <TileLayer
@@ -212,7 +217,9 @@ const Main: React.FC = () => {
               </Popup>
             </Marker>
           ))}
-        <SetViewOnPosition coords={location} />
+        {position && (
+          <SetViewOnPosition coords={[position.latitude, position.longitude]} />
+        )}
       </MapContainer>
     </Container>
   );

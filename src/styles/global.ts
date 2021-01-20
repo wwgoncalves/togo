@@ -17,7 +17,7 @@ export default createGlobalStyle`
   }
 
   body, button, input, textarea {
-    font: 600 18px 'Nunito', sans-serif;
+    font: 600 16px 'Nunito', sans-serif;
   }
 
   body, html, #root {
@@ -26,7 +26,6 @@ export default createGlobalStyle`
 
   body {
     -webkit-font-smoothing: antialiased;
-    min-width: 920px;
   }
 
   button {

@@ -5,13 +5,12 @@ export const Container = styled.div`
   height: 100vh;
 
   form.landing-page-form {
-    width: 400px;
+    width: 350px;
 
     background: #fffa;
-    border: 1px solid #d3e2e5;
-    border-radius: 30px;
+    border-radius: 20px;
 
-    padding: 20px 40px;
+    padding: 10px 20px;
 
     position: absolute;
     top: 10px;
@@ -30,15 +29,13 @@ export const Container = styled.div`
 
   form.landing-page-form fieldset legend {
     width: 100%;
+    margin-bottom: 10px;
 
+    text-align: center;
     font-size: 32px;
     line-height: 34px;
-    color: #6060f0;
     font-weight: 700;
-
-    border-bottom: 1px solid #d3e2e5;
-    margin-bottom: 5px;
-    padding-bottom: 5px;
+    color: #6060f0;
   }
 
   form.landing-page-form .input-block + .input-block {
@@ -52,25 +49,16 @@ export const Container = styled.div`
     line-height: 24px;
   }
 
-  form.landing-page-form .input-block label span {
-    font-size: 14px;
-    color: #8fa7b3;
-    margin-left: 24px;
-    line-height: 24px;
-  }
-
   form.landing-page-form .input-block input {
     width: 100%;
-    background: #f5f8fa;
-    border: 1px solid #d3e2e5;
+    height: 44px;
+    padding: 0 16px;
+
+    background: #fffa;
+    border: 1px solid #6060f0;
     border-radius: 20px;
     outline: none;
     color: #333;
-  }
-
-  form.landing-page-form .input-block input {
-    height: 44px;
-    padding: 0 16px;
 
     ::placeholder {
       color: #ccc;
@@ -78,16 +66,15 @@ export const Container = styled.div`
   }
 
   form.landing-page-form button.confirm-button {
-    margin-top: 34px;
-
     width: 100%;
     height: 50px;
-    border: 0;
-    cursor: pointer;
+    margin-top: 34px;
+
     background-color: #6060f0;
+    border: 0;
     border-radius: 20px;
-    color: #ffffff;
-    font-weight: 800;
+    color: #fff;
+    font-weight: 700;
 
     transition: background-color 0.2s;
   }
@@ -98,24 +85,24 @@ export const Container = styled.div`
 
   /* Marked location pop-up */
   .map-popup .leaflet-popup-content-wrapper {
-    background: rgba(255, 255, 255, 0.8);
+    background: #fffe;
     border-radius: 20px;
     box-shadow: none;
   }
 
   .map-popup .leaflet-popup-content h3 {
-    color: #0089a5;
+    margin: 8px 12px;
+    color: #6060f0;
     font-size: 20px;
     font-weight: bold;
-    margin: 8px 12px;
   }
 
   .map-popup .leaflet-popup-content p {
-    color: #042f38;
-    font-size: 12px;
-    font-weight: bold;
     margin: 8px 12px;
     line-height: 15px;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
   }
 
   .map-popup .leaflet-popup-tip-container {
@@ -124,27 +111,54 @@ export const Container = styled.div`
 
   /* React Select classes */
   .filter__control {
-    border-radius: 20px !important;
-
     width: 100% !important;
-    background: #f5f8fa !important;
-    border: 1px solid #d3e2e5 !important;
+    background: #fffa !important;
+    border: 1px solid #6060f0 !important;
     border-radius: 20px !important;
     outline: none !important;
-    color: #5c8599 !important;
+  }
+
+  .filter__control--is-focused {
+    box-shadow: none !important;
+  }
+
+  .filter__value-container {
+    height: 44px !important;
+    padding: 0 0px !important;
+    cursor: text !important;
+
+    div:nth-child(2),
+    div:first-child:not(.filter__placeholder):not(.filter__single-value) {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
   }
 
   .filter__placeholder {
+    margin-left: 0 !important;
+    padding: 0 16px !important;
     color: #ccc !important;
   }
 
+  .filter__input {
+    margin-left: 0 !important;
+    padding: 0 14px !important;
+  }
+
+  .filter__single-value {
+    margin-left: 0 !important;
+    padding: 0 16px !important;
+  }
+
   .filter__option {
-    background: #f5f8fa !important;
-    color: #5c8599 !important;
+    color: #333 !important;
   }
 
   .filter__option--is-focused {
-    background: #d3e2e5 !important;
-    color: #010101 !important;
+    background: #6060f0 !important;
+    color: #fff !important;
+    transform: none !important;
   }
 `;
