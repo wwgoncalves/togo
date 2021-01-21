@@ -1,7 +1,8 @@
 import React from 'react';
 import Leaflet from 'leaflet';
-import { Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import { Marker, TileLayer, useMap } from 'react-leaflet';
 
+import Popup from './Popup';
 import { Place, Position } from './../../interfaces';
 
 import mapLocation from './../../assets/location.svg';
@@ -71,20 +72,7 @@ const Map: React.FC<MapProps> = ({
             icon={mapMarkIcon}
             position={[place.latitude, place.longitude]}
           >
-            <Popup
-              closeButton={false}
-              minWidth={240}
-              maxWidth={240}
-              className="map-popup"
-            >
-              <div>
-                <h3>{place.name}</h3>
-                <p>
-                  {place.address}{' '}
-                  {place.complement ? `- ${place.complement}` : ''}
-                </p>
-              </div>
-            </Popup>
+            <Popup place={place} />
           </Marker>
         ))}
       {position && (

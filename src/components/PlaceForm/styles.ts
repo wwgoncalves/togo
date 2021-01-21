@@ -53,7 +53,7 @@ export const Container = styled.form`
     }
   }
 
-  button.confirm-button {
+  button.save-button {
     width: 100%;
     height: 50px;
     margin-top: 34px;
@@ -67,7 +67,7 @@ export const Container = styled.form`
     transition: background-color 0.2s;
   }
 
-  button.confirm-button:hover {
+  button.save-button:hover {
     background-color: #6060f0dd;
   }
 

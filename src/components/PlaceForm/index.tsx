@@ -119,7 +119,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
         </div>
       </fieldset>
 
-      <button type="submit" className="confirm-button">
+      <button type="submit" className="save-button">
         Save
       </button>
     </Container>
