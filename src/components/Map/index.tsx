@@ -38,12 +38,16 @@ interface MapProps {
   initialPosition: Leaflet.LatLngLiteral;
   position: Position | null;
   placesToGo: Place[];
+  onEdit: (place: Place) => void;
+  onDelete: (placeToDelete: Place) => void;
 }
 
 const Map: React.FC<MapProps> = ({
   initialPosition,
   position,
   placesToGo,
+  onEdit,
+  onDelete,
 }: MapProps) => {
   return (
     <Container
@@ -72,7 +76,11 @@ const Map: React.FC<MapProps> = ({
             icon={mapMarkIcon}
             position={[place.latitude, place.longitude]}
           >
-            <Popup place={place} />
+            <Popup
+              place={place}
+              onEdit={() => onEdit(place)}
+              onDelete={() => onDelete(place)}
+            />
           </Marker>
         ))}
       {position && (

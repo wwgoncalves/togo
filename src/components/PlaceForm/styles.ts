@@ -53,24 +53,6 @@ export const Container = styled.form`
     }
   }
 
-  button.save-button {
-    width: 100%;
-    height: 50px;
-    margin-top: 34px;
-
-    background-color: #6060f0;
-    border: 0;
-    border-radius: 20px;
-    color: #fff;
-    font-weight: 700;
-
-    transition: background-color 0.2s;
-  }
-
-  button.save-button:hover {
-    background-color: #6060f0dd;
-  }
-
   /* React Select classes */
   .filter__control {
     width: 100% !important;
@@ -122,5 +104,50 @@ export const Container = styled.form`
     background: #6060f0 !important;
     color: #fff !important;
     transform: none !important;
+  }
+`;
+
+export const Actions = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  button.reset-button {
+    flex: 1;
+    height: 50px;
+    margin-top: 34px;
+
+    background-color: #c0c0c0;
+    border: 0;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 700;
+
+    transition: background-color 0.2s;
+  }
+
+  button.reset-button:hover {
+    background-color: #c0c0c0dd;
+  }
+
+  button.save-button {
+    flex: 1;
+    height: 50px;
+    margin-top: 34px;
+
+    background-color: #6060f0;
+    border: 0;
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 700;
+
+    transition: background-color 0.2s;
+  }
+
+  button.save-button:hover {
+    background-color: #6060f0dd;
+  }
+
+  button + button {
+    margin-left: 10px;
   }
 `;

@@ -1,16 +1,26 @@
 import React from 'react';
 import { FaLocationArrow, FaPen, FaTimes } from 'react-icons/fa';
 
-import { Place } from './../../../interfaces';
+import { Place, Position } from './../../../interfaces';
+import { getDirectionsURL } from './../../../services/directions';
 
 import { Container, Content, Actions } from './styles';
 
 interface PopupProps {
   children?: React.ReactNode;
   place: Place;
+  onEdit: () => void;
+  onDelete: () => void;
 }
 
-const Popup: React.FC<PopupProps> = ({ place }: PopupProps) => {
+const Popup: React.FC<PopupProps> = ({
+  place,
+  onEdit,
+  onDelete,
+}: PopupProps) => {
+  const onGo = (position: Position) => {
+    window.open(getDirectionsURL(position), '_blank');
+  };
   return (
     <Container closeButton={false} minWidth={250} maxWidth={250}>
       <Content>
@@ -20,20 +30,17 @@ const Popup: React.FC<PopupProps> = ({ place }: PopupProps) => {
         </p>
         <Actions>
           <div>
-            <button>
+            <button onClick={onEdit}>
               <FaPen color={'#fff'} /> {'Edit'}
             </button>
-            <button>
+            <button onClick={onDelete}>
               <FaTimes color={'#f00'} /> {'Delete'}
             </button>
           </div>
           <button
-            onClick={() => {
-              window.open(
-                `https://www.google.com/maps/dir//${place.latitude},${place.longitude}`,
-                '_blank'
-              );
-            }}
+            onClick={() =>
+              onGo({ latitude: place.latitude, longitude: place.longitude })
+            }
           >
             <FaLocationArrow color={'#fff'} /> {'Go'}
           </button>

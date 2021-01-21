@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import AsyncSelect from 'react-select/async';
 
@@ -6,21 +6,25 @@ import { Address, Place, Position } from './../../interfaces';
 
 import { fetchLocal } from './../../services/mapbox';
 
-import { Container } from './styles';
+import { Container, Actions } from './styles';
 
 interface PlaceFormProps {
   children?: React.ReactNode;
   position: Position | null;
   placesToGo: Place[];
+  placeOnEditing: Place | null;
   setPosition: React.Dispatch<React.SetStateAction<Position | null>>;
   setPlacesToGo: React.Dispatch<React.SetStateAction<Place[]>>;
+  setPlaceOnEditing: React.Dispatch<React.SetStateAction<Place | null>>;
 }
 
 const PlaceForm: React.FC<PlaceFormProps> = ({
   position,
   placesToGo,
+  placeOnEditing,
   setPosition,
   setPlacesToGo,
+  setPlaceOnEditing,
 }: PlaceFormProps) => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState<Address | null>(null);
@@ -56,31 +60,77 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
     });
   };
 
+  async function handleReset(event: React.FormEvent) {
+    event.preventDefault();
+
+    setPlaceOnEditing(null);
+
+    setPosition(null);
+    setName('');
+    setAddress(null);
+    setComplement('');
+  }
+
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
     if (!address || !name) return;
 
-    setPlacesToGo([
-      ...placesToGo,
-      {
-        id: uuidv4(),
-        name,
-        address: address?.value || '',
-        complement,
-        latitude: position?.latitude || 0,
-        longitude: position?.longitude || 0,
-      },
-    ]);
+    if (placeOnEditing) {
+      setPlacesToGo((prevPlacesToGo) => {
+        const placeOnEditingIndex = prevPlacesToGo.indexOf(placeOnEditing);
+        if (placeOnEditingIndex >= 0) {
+          prevPlacesToGo[placeOnEditingIndex] = {
+            id: placeOnEditing.id,
+            name,
+            address: address?.value || '',
+            complement,
+            latitude: position?.latitude || 0,
+            longitude: position?.longitude || 0,
+          };
+        }
 
+        return prevPlacesToGo;
+      });
+    } else {
+      setPlacesToGo([
+        ...placesToGo,
+        {
+          id: uuidv4(),
+          name,
+          address: address?.value || '',
+          complement,
+          latitude: position?.latitude || 0,
+          longitude: position?.longitude || 0,
+        },
+      ]);
+    }
+
+    setPlaceOnEditing(null);
+
+    setPosition(null);
     setName('');
     setAddress(null);
     setComplement('');
-    setPosition(null);
   }
 
+  useEffect(() => {
+    if (placeOnEditing) {
+      setPosition({
+        latitude: placeOnEditing.latitude,
+        longitude: placeOnEditing.longitude,
+      });
+      setName(placeOnEditing.name);
+      setAddress({
+        label: placeOnEditing.address,
+        value: placeOnEditing.address,
+      });
+      setComplement(placeOnEditing.complement);
+    }
+  }, [placeOnEditing]);
+
   return (
-    <Container onSubmit={handleSubmit}>
+    <Container onSubmit={handleSubmit} onReset={handleReset}>
       <fieldset>
         <legend>Place to go</legend>
 
@@ -119,9 +169,16 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
         </div>
       </fieldset>
 
-      <button type="submit" className="save-button">
-        Save
-      </button>
+      <Actions>
+        {placeOnEditing && (
+          <button type="reset" className="reset-button">
+            {'Cancel'}
+          </button>
+        )}
+        <button type="submit" className="save-button">
+          {'Save'}
+        </button>
+      </Actions>
     </Container>
   );
 };
