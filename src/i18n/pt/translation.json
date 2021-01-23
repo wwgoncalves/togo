@@ -1,13 +1,11 @@
 {
-  "English": "Inglês",
-  "Portuguese": "Português",
   "Delete place": "Remover lugar",
 
   "Place to go": "Lugar para ir",
   "Name": "Nome",
   "A name for the place": "Um nome para o lugar",
   "Address": "Endereço",
-  "Place or place's address": "Lugar ou endereço do lugar",
+  "Place or its address": "Lugar ou o endereço dele",
   "No option found": "Nenhuma opção encontrada",
   "Complement": "Complemento",
   "Block, building, floor etc": "Quadra, prédio, andar etc",

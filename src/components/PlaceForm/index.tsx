@@ -133,7 +133,11 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
   }, [placeOnEditing]);
 
   return (
-    <Container onSubmit={handleSubmit} onReset={handleReset}>
+    <Container
+      onSubmit={handleSubmit}
+      onReset={handleReset}
+      autoComplete={'off'}
+    >
       <fieldset>
         <legend>{t('Place to go')}</legend>
 
@@ -151,7 +155,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
           <label htmlFor="address">{t('Address')}</label>
           <AsyncSelect
             id="address"
-            placeholder={t("Place or place's address")}
+            placeholder={t('Place or its address')}
             value={address}
             onChange={handleChangeSelect}
             classNamePrefix="filter"

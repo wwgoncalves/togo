@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.form`
-  width: 350px;
+  width: 300px;
   position: absolute;
   top: 10px;
   left: 50px;

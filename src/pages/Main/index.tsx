@@ -35,14 +35,6 @@ const Main: React.FC = () => {
 
   return (
     <Container>
-      <header style={{ position: 'absolute', bottom: 0, zIndex: 2 }}>
-        <button type="button" onClick={() => changeLanguage('en')}>
-          {t('English')}
-        </button>
-        <button type="button" onClick={() => changeLanguage('pt')}>
-          {t('Portuguese')}
-        </button>
-      </header>
       <main>
         <PlaceForm
           position={position}
@@ -61,6 +53,26 @@ const Main: React.FC = () => {
         onEdit={onEdit}
         onDelete={onDelete}
       />
+
+      <footer style={{ position: 'absolute', bottom: 0, left: 0, zIndex: 2 }}>
+        {i18n.language === 'en' ? (
+          <button
+            type="button"
+            onClick={() => changeLanguage('pt')}
+            title={'Mudar idioma para português'}
+          >
+            {'por'}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => changeLanguage('en')}
+            title={'Change language to English'}
+          >
+            {'eng'}
+          </button>
+        )}
+      </footer>
     </Container>
   );
 };
