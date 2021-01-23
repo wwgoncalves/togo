@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import AsyncSelect from 'react-select/async';
+import { useTranslation } from 'react-i18next';
 
 import { Address, Place, Position } from './../../interfaces';
 
@@ -29,6 +30,8 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
   const [name, setName] = useState('');
   const [address, setAddress] = useState<Address | null>(null);
   const [complement, setComplement] = useState('');
+
+  const { t } = useTranslation();
 
   const loadOptions = async (inputValue: any, callback: any) => {
     if (inputValue.length < 3) return;
@@ -132,37 +135,37 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
   return (
     <Container onSubmit={handleSubmit} onReset={handleReset}>
       <fieldset>
-        <legend>Place to go</legend>
+        <legend>{t('Place to go')}</legend>
 
         <div className="input-block">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">{t('Name')}</label>
           <input
             id="name"
-            placeholder="Place name"
+            placeholder={t('A name for the place')}
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
         </div>
 
         <div className="input-block">
-          <label htmlFor="address">Address</label>
+          <label htmlFor="address">{t('Address')}</label>
           <AsyncSelect
             id="address"
-            placeholder="Place or place's address"
+            placeholder={t("Place or place's address")}
             value={address}
             onChange={handleChangeSelect}
             classNamePrefix="filter"
             cacheOptions
             loadOptions={loadOptions}
-            noOptionsMessage={() => 'No options'}
+            noOptionsMessage={() => t('No option found')}
           />
         </div>
 
         <div className="input-block">
-          <label htmlFor="complement">Complement</label>
+          <label htmlFor="complement">{t('Complement')}</label>
           <input
             id="complement"
-            placeholder="Block, building, floor etc"
+            placeholder={t('Block, building, floor etc')}
             value={complement}
             onChange={(event) => setComplement(event.target.value)}
           />
@@ -172,11 +175,11 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
       <Actions>
         {placeOnEditing && (
           <button type="reset" className="reset-button">
-            {'Cancel'}
+            {t('Cancel')}
           </button>
         )}
         <button type="submit" className="save-button">
-          {'Save'}
+          {t('Save')}
         </button>
       </Actions>
     </Container>

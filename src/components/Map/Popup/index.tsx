@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaLocationArrow, FaPen, FaTimes } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 import { Place, Position } from './../../../interfaces';
 import { getDirectionsURL } from './../../../services/directions';
@@ -18,9 +19,12 @@ const Popup: React.FC<PopupProps> = ({
   onEdit,
   onDelete,
 }: PopupProps) => {
+  const { t } = useTranslation();
+
   const onGo = (position: Position) => {
     window.open(getDirectionsURL(position), '_blank');
   };
+
   return (
     <Container closeButton={false} minWidth={250} maxWidth={250}>
       <Content>
@@ -31,10 +35,10 @@ const Popup: React.FC<PopupProps> = ({
         <Actions>
           <div>
             <button onClick={onEdit}>
-              <FaPen color={'#fff'} /> {'Edit'}
+              <FaPen color={'#fff'} /> {t('Edit')}
             </button>
             <button onClick={onDelete}>
-              <FaTimes color={'#f00'} /> {'Delete'}
+              <FaTimes color={'#f00'} /> {t('Delete')}
             </button>
           </div>
           <button
@@ -42,7 +46,7 @@ const Popup: React.FC<PopupProps> = ({
               onGo({ latitude: place.latitude, longitude: place.longitude })
             }
           >
-            <FaLocationArrow color={'#fff'} /> {'Go'}
+            <FaLocationArrow color={'#fff'} /> {t('Go')}
           </button>
         </Actions>
       </Content>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Leaflet from 'leaflet';
 import { Marker, TileLayer, useMap } from 'react-leaflet';
+import { useTranslation } from 'react-i18next';
 
 import Popup from './Popup';
 import { Place, Position } from './../../interfaces';
@@ -49,6 +50,8 @@ const Map: React.FC<MapProps> = ({
   onEdit,
   onDelete,
 }: MapProps) => {
+  const { t } = useTranslation();
+
   return (
     <Container
       center={initialPosition}
@@ -57,9 +60,13 @@ const Map: React.FC<MapProps> = ({
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution={
-          'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors and <a href="https://www.mapbox.com/">Mapbox</a>, Icons &copy; <a href="https://www.flaticon.com/authors/freepik">Freepik</a>'
-        }
+        attribution={`${t(
+          'Map data'
+        )} &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> ${t(
+          'contributors'
+        )} ${t('and')} <a href="https://www.mapbox.com/">Mapbox</a>, ${t(
+          'Icons'
+        )} &copy; <a href="https://www.flaticon.com/authors/freepik">Freepik</a>`}
       />
 
       {position && (
