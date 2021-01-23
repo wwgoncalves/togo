@@ -54,7 +54,7 @@ const Main: React.FC = () => {
         onDelete={onDelete}
       />
 
-      <footer style={{ position: 'absolute', bottom: 0, left: 0, zIndex: 2 }}>
+      <footer>
         {i18n.language === 'en' ? (
           <button
             type="button"

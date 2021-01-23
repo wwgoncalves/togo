@@ -11,6 +11,22 @@ export const Container = styled.form`
   background: #fffa;
   border-radius: 20px;
 
+  @media (max-width: 450px) {
+    left: unset;
+    top: unset;
+    right: 0;
+    bottom: 0;
+  }
+
+  /* @media (orientation: landscape) {
+    height: 90vh;
+    left: unset;
+    top: 0;
+    right: 0;
+    bottom: unset;
+    overflow-y: scroll;
+  } */
+
   fieldset {
     border: 0;
   }
