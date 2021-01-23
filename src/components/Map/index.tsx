@@ -1,6 +1,7 @@
 import React from 'react';
 import Leaflet from 'leaflet';
 import { Marker, TileLayer, useMap } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { useTranslation } from 'react-i18next';
 
 import Popup from './Popup';
@@ -10,6 +11,7 @@ import mapLocation from './../../assets/location.svg';
 import mapMark from './../../assets/mark.svg';
 
 import 'leaflet/dist/leaflet.css';
+import 'react-leaflet-markercluster/dist/styles.min.css';
 import { Container } from './styles';
 
 const SetViewOnPosition = (props: any) => {
@@ -19,6 +21,25 @@ const SetViewOnPosition = (props: any) => {
   map.setView(coords, map.getZoom(), { animate: true });
 
   return null;
+};
+
+const createClusterCustomIcon = (cluster: any) => {
+  var childCount = cluster.getChildCount();
+
+  var customClassName = 'marker-cluster-custom-';
+  if (childCount < 10) {
+    customClassName += 'small';
+  } else if (childCount < 100) {
+    customClassName += 'medium';
+  } else {
+    customClassName += 'large';
+  }
+
+  return Leaflet.divIcon({
+    html: `<div><span>${childCount}</span></div>`,
+    className: `marker-cluster ${customClassName}`,
+    iconSize: Leaflet.point(40, 40, true),
+  });
 };
 
 const mapLocationIcon = Leaflet.icon({
@@ -76,20 +97,23 @@ const Map: React.FC<MapProps> = ({
         ></Marker>
       )}
 
-      {placesToGo &&
-        placesToGo.map((place) => (
-          <Marker
-            key={place.id}
-            icon={mapMarkIcon}
-            position={[place.latitude, place.longitude]}
-          >
-            <Popup
-              place={place}
-              onEdit={() => onEdit(place)}
-              onDelete={() => onDelete(place)}
-            />
-          </Marker>
-        ))}
+      {placesToGo && (
+        <MarkerClusterGroup iconCreateFunction={createClusterCustomIcon}>
+          {placesToGo.map((place) => (
+            <Marker
+              key={place.id}
+              icon={mapMarkIcon}
+              position={[place.latitude, place.longitude]}
+            >
+              <Popup
+                place={place}
+                onEdit={() => onEdit(place)}
+                onDelete={() => onDelete(place)}
+              />
+            </Marker>
+          ))}
+        </MarkerClusterGroup>
+      )}
       {position && (
         <SetViewOnPosition coords={[position.latitude, position.longitude]} />
       )}
