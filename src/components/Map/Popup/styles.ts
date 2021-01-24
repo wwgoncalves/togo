@@ -8,20 +8,6 @@ export const Container = styled(Popup)`
     box-shadow: none;
   }
 
-  /* .leaflet-popup-content h3 {
-    margin: 8px 12px;
-    color: #6060f0;
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  .leaflet-popup-content p {
-    margin: 8px 12px;
-    line-height: 15px;
-    color: #333;
-    font-size: 12px;
-    font-weight: bold;
-  } */
   .leaflet-popup-content-wrapper .leaflet-popup-content {
     display: flex;
     flex-direction: row;
@@ -35,7 +21,6 @@ export const Container = styled(Popup)`
 
 export const Content = styled.div`
   h3 {
-    margin: 8px 12px;
     line-height: 22px;
     color: #6060f0;
     font-size: 20px;
@@ -43,7 +28,7 @@ export const Content = styled.div`
   }
 
   p {
-    margin: 8px 12px;
+    margin-top: 10px;
     line-height: 15px;
     color: #333;
     font-size: 12px;
@@ -55,7 +40,6 @@ export const Actions = styled.div`
   flex: 1;
   display: flex;
   justify-content: space-between;
-  margin: 0 12px;
   margin-top: 15px;
 
   div {

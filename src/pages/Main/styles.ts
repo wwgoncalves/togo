@@ -6,22 +6,25 @@ export const Container = styled.div`
 
   footer {
     position: absolute;
-    bottom: 20px;
-    left: 0;
+    top: 80px;
+    left: 10px;
     z-index: 2;
 
     button {
-      padding: 5px 5px;
-      border: 0;
-      border-radius: 50%;
-      background-color: #f0f0f0dd;
+      width: 30px;
+      box-sizing: content-box;
+      border: 2px solid #0003;
+      border-radius: 4px;
+      background-color: #fff;
+      background-clip: padding-box;
       color: #6060f0;
       font-weight: 700;
 
       transition: background-color 0.2s;
 
       &:hover {
-        background-color: #f0f0f077;
+        background-color: #6060f0;
+        color: #fff;
       }
     }
   }
