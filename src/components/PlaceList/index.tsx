@@ -29,29 +29,31 @@ const PlaceList: React.FC<PlaceListProps> = ({
   const { t } = useTranslation();
 
   return (
-    placesToGo && (
-      <Container>
-        <h3>{t('Places saved')}</h3>
-        <ul>
-          {placesToGo.map((place: Place) => (
-            <li key={place.id}>
-              <span>{place.name}</span>
-              <span
-                onClick={() => {
-                  return (
-                    <SetViewOnPosition
-                      coords={[place.latitude, place.longitude]}
-                    />
-                  );
-                }}
-              >
-                {place.address}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </Container>
-    )
+    <>
+      {placesToGo.length > 0 && (
+        <Container>
+          <h3>{t('Places saved')}</h3>
+          <ul>
+            {placesToGo.map((place: Place) => (
+              <li key={place.id}>
+                <span>{place.name}</span>
+                <span
+                  onClick={() => {
+                    return (
+                      <SetViewOnPosition
+                        coords={[place.latitude, place.longitude]}
+                      />
+                    );
+                  }}
+                >
+                  {place.address}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      )}
+    </>
   );
 };
 
