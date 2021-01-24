@@ -7,10 +7,20 @@ export const Container = styled.div`
   left: 50px;
 
   z-index: 1;
-  padding: 10px 20px;
+  padding: 10px 0;
+  padding-left: 20px;
 
   background: #fffa;
   border-radius: 20px;
+
+  max-height: 400px;
+
+  div {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-right: 10px;
+    padding-right: 20px;
+  }
 
   h3 {
     margin-bottom: 10px;

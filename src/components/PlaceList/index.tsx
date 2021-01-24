@@ -32,14 +32,16 @@ const PlaceList: React.FC<PlaceListProps> = ({
       {placesToGo.length > 0 && (
         <Container>
           <h3>{t('Places saved')}</h3>
-          <ul>
-            {placesToGo.map((place: Place) => (
-              <li key={place.id}>
-                <span>{place.name}</span>
-                <span onClick={() => setViewOn(place)}>{place.address}</span>
-              </li>
-            ))}
-          </ul>
+          <div>
+            <ul>
+              {placesToGo.map((place: Place) => (
+                <li key={place.id}>
+                  <span>{place.name}</span>
+                  <span onClick={() => setViewOn(place)}>{place.address}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Container>
       )}
     </>

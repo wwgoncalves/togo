@@ -89,6 +89,10 @@ export const Container = styled.form`
   .filter__input {
     margin-left: 0 !important;
     padding: 0 14px !important;
+
+    input {
+      width: 100% !important;
+    }
   }
 
   .filter__single-value {

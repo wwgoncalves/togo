@@ -12,6 +12,7 @@ export const Container = styled.div`
 
     button {
       width: 30px;
+      height: 30px;
       box-sizing: content-box;
       border: 2px solid #0003;
       border-radius: 4px;
