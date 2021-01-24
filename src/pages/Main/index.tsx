@@ -5,6 +5,7 @@ import './../../i18n/config';
 import { Place, Position } from './../../interfaces';
 
 import PlaceForm from './../../components/PlaceForm';
+import PlaceList from './../../components/PlaceList';
 import Map from './../../components/Map';
 
 import { Container } from './styles';
@@ -44,6 +45,7 @@ const Main: React.FC = () => {
           setPlacesToGo={setPlacesToGo}
           setPlaceOnEditing={setPlaceOnEditing}
         />
+        <PlaceList placesToGo={placesToGo} />
       </main>
 
       <Map
