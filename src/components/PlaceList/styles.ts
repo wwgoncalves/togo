@@ -35,6 +35,11 @@ export const Container = styled.div`
       span + span {
         flex: 2;
         text-align: justify;
+
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
       }
     }
 

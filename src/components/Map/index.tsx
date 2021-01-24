@@ -62,6 +62,7 @@ interface MapProps {
   placesToGo: Place[];
   onEdit: (place: Place) => void;
   onDelete: (placeToDelete: Place) => void;
+  setMap: React.Dispatch<React.SetStateAction<Leaflet.Map | null>>;
 }
 
 const Map: React.FC<MapProps> = ({
@@ -70,6 +71,7 @@ const Map: React.FC<MapProps> = ({
   placesToGo,
   onEdit,
   onDelete,
+  setMap,
 }: MapProps) => {
   const { t } = useTranslation();
 
@@ -78,6 +80,7 @@ const Map: React.FC<MapProps> = ({
       center={initialPosition}
       zoom={14}
       style={{ width: '100%', height: '100%' }}
+      whenCreated={setMap}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

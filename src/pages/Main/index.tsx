@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import Leaflet from 'leaflet';
 
 import './../../i18n/config';
 import { Place, Position } from './../../interfaces';
@@ -16,6 +17,8 @@ const Main: React.FC = () => {
   const [position, setPosition] = useState<Position | null>(null);
   const [placesToGo, setPlacesToGo] = useState<Place[]>([]);
   const [placeOnEditing, setPlaceOnEditing] = useState<Place | null>(null);
+
+  const [map, setMap] = useState<Leaflet.Map | null>(null);
 
   const { t, i18n } = useTranslation();
   const changeLanguage = (languageCode: string) => {
@@ -45,7 +48,7 @@ const Main: React.FC = () => {
           setPlacesToGo={setPlacesToGo}
           setPlaceOnEditing={setPlaceOnEditing}
         />
-        <PlaceList placesToGo={placesToGo} />
+        <PlaceList map={map} placesToGo={placesToGo} />
       </main>
 
       <Map
@@ -54,6 +57,7 @@ const Main: React.FC = () => {
         placesToGo={placesToGo}
         onEdit={onEdit}
         onDelete={onDelete}
+        setMap={setMap}
       />
 
       <footer>
