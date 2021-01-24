@@ -26,7 +26,7 @@ const Popup: React.FC<PopupProps> = ({
   };
 
   return (
-    <Container closeButton={false} minWidth={215} maxWidth={215}>
+    <Container closeButton={false} minWidth={205} maxWidth={205}>
       <Content>
         <h3>{place.name}</h3>
         <p>

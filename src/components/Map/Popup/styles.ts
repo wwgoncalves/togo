@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { Popup } from 'react-leaflet';
 
 export const Container = styled(Popup)`
+  /* .leaflet-popup {
+    left: -140px !important;
+  } */
+
   .leaflet-popup-content-wrapper {
     background: #fffe;
     border-radius: 20px;

@@ -61,4 +61,30 @@ export const Container = styled.div`
       font-weight: 700;
     }
   }
+
+  @media (max-width: 425px), (max-height: 450px) and (orientation: landscape) {
+    max-width: 45vw;
+    max-height: 90vh;
+    bottom: 0;
+    left: 50px;
+    overflow-y: hidden;
+
+    div {
+      max-height: 70vh;
+      overflow-y: scroll;
+    }
+  }
+
+  @media (max-width: 425px) and (orientation: portrait) {
+    max-width: 95vw;
+    max-height: 50vh;
+    left: unset;
+    top: 0;
+    right: 0;
+    bottom: unset;
+
+    div {
+      max-height: 30vh;
+    }
+  }
 `;
