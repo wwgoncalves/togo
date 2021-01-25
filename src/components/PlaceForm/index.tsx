@@ -17,6 +17,7 @@ interface PlaceFormProps {
   setPosition: React.Dispatch<React.SetStateAction<Position | null>>;
   setPlacesToGo: React.Dispatch<React.SetStateAction<Place[]>>;
   setPlaceOnEditing: React.Dispatch<React.SetStateAction<Place | null>>;
+  open: boolean;
 }
 
 const PlaceForm: React.FC<PlaceFormProps> = ({
@@ -26,6 +27,7 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
   setPosition,
   setPlacesToGo,
   setPlaceOnEditing,
+  open,
 }: PlaceFormProps) => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState<Address | null>(null);
@@ -135,60 +137,64 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
   }, [placeOnEditing]);
 
   return (
-    <Container
-      onSubmit={handleSubmit}
-      onReset={handleReset}
-      autoComplete={'off'}
-    >
-      <fieldset>
-        <legend>{t('Place to go')}</legend>
+    <>
+      {open && (
+        <Container
+          onSubmit={handleSubmit}
+          onReset={handleReset}
+          autoComplete={'off'}
+        >
+          <fieldset>
+            <legend>{t('Place to go')}</legend>
 
-        <div className="input-block">
-          <label htmlFor="name">{t('Name')}</label>
-          <input
-            id="name"
-            placeholder={t('A name for the place')}
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-        </div>
+            <div className="input-block">
+              <label htmlFor="name">{t('Name')}</label>
+              <input
+                id="name"
+                placeholder={t('A name for the place')}
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </div>
 
-        <div className="input-block">
-          <label htmlFor="address">{t('Address')}</label>
-          <AsyncSelect
-            id="address"
-            placeholder={t('Place or its address')}
-            value={address}
-            onChange={handleChangeSelect}
-            classNamePrefix="filter"
-            cacheOptions
-            loadOptions={loadOptions}
-            noOptionsMessage={() => t('No option found')}
-          />
-        </div>
+            <div className="input-block">
+              <label htmlFor="address">{t('Address')}</label>
+              <AsyncSelect
+                id="address"
+                placeholder={t('Place or its address')}
+                value={address}
+                onChange={handleChangeSelect}
+                classNamePrefix="filter"
+                cacheOptions
+                loadOptions={loadOptions}
+                noOptionsMessage={() => t('No option found')}
+              />
+            </div>
 
-        <div className="input-block">
-          <label htmlFor="complement">{t('Complement')}</label>
-          <input
-            id="complement"
-            placeholder={t('Block, building, floor etc')}
-            value={complement}
-            onChange={(event) => setComplement(event.target.value)}
-          />
-        </div>
-      </fieldset>
+            <div className="input-block">
+              <label htmlFor="complement">{t('Complement')}</label>
+              <input
+                id="complement"
+                placeholder={t('Block, building, floor etc')}
+                value={complement}
+                onChange={(event) => setComplement(event.target.value)}
+              />
+            </div>
+          </fieldset>
 
-      <Actions>
-        {placeOnEditing && (
-          <button type="reset" className="reset-button">
-            {t('Cancel')}
-          </button>
-        )}
-        <button type="submit" className="save-button">
-          {t('Save')}
-        </button>
-      </Actions>
-    </Container>
+          <Actions>
+            {placeOnEditing && (
+              <button type="reset" className="reset-button">
+                {t('Cancel')}
+              </button>
+            )}
+            <button type="submit" className="save-button">
+              {t('Save')}
+            </button>
+          </Actions>
+        </Container>
+      )}
+    </>
   );
 };
 

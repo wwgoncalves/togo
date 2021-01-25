@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Leaflet from 'leaflet';
+import { FaSearchLocation, FaListUl } from 'react-icons/fa';
 
 import './../../i18n/config';
 import { Place, Position } from './../../interfaces';
@@ -19,6 +20,9 @@ const Main: React.FC = () => {
   const [placeOnEditing, setPlaceOnEditing] = useState<Place | null>(null);
 
   const [map, setMap] = useState<Leaflet.Map | null>(null);
+
+  const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
+  const [isListOpen, setIsListOpen] = useState<boolean>(false);
 
   const { t, i18n } = useTranslation();
   const changeLanguage = (languageCode: string) => {
@@ -47,8 +51,9 @@ const Main: React.FC = () => {
           setPosition={setPosition}
           setPlacesToGo={setPlacesToGo}
           setPlaceOnEditing={setPlaceOnEditing}
+          open={isFormOpen}
         />
-        <PlaceList map={map} placesToGo={placesToGo} />
+        <PlaceList map={map} placesToGo={placesToGo} open={isListOpen} />
       </main>
 
       <Map
@@ -60,7 +65,23 @@ const Main: React.FC = () => {
         setMap={setMap}
       />
 
-      <footer>
+      <aside>
+        <button
+          type="button"
+          onClick={() => setIsFormOpen((prevValue) => !prevValue)}
+          title={t('Search and save a place')}
+          className={isFormOpen ? 'active' : ''}
+        >
+          <FaSearchLocation />
+        </button>
+        <button
+          type="button"
+          onClick={() => setIsListOpen((prevValue) => !prevValue)}
+          title={t('List of saved places')}
+          className={isListOpen ? 'active' : ''}
+        >
+          <FaListUl />
+        </button>
         {i18n.language === 'en' ? (
           <button
             type="button"
@@ -78,7 +99,7 @@ const Main: React.FC = () => {
             {'eng'}
           </button>
         )}
-      </footer>
+      </aside>
     </Container>
   );
 };

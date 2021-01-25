@@ -10,11 +10,13 @@ interface PlaceListProps {
   children?: React.ReactNode;
   map: Leaflet.Map | null;
   placesToGo: Place[];
+  open: boolean;
 }
 
 const PlaceList: React.FC<PlaceListProps> = ({
   map,
   placesToGo,
+  open,
 }: PlaceListProps) => {
   const { t } = useTranslation();
 
@@ -29,7 +31,7 @@ const PlaceList: React.FC<PlaceListProps> = ({
 
   return (
     <>
-      {placesToGo.length > 0 && (
+      {open && placesToGo.length > 0 && (
         <Container>
           <h3>{t('Places saved')}</h3>
           <div>

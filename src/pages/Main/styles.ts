@@ -4,11 +4,13 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 
-  footer {
+  aside {
     position: absolute;
     top: 80px;
     left: 10px;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
 
     button {
       width: 30px;
@@ -20,10 +22,14 @@ export const Container = styled.div`
       background-clip: padding-box;
       color: #6060f0;
       font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       transition: background-color 0.2s;
 
-      &:hover {
+      &:hover,
+      &.active {
         background-color: #6060f0;
         color: #fff;
       }
