@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import { Popup } from 'react-leaflet';
 
 export const Container = styled(Popup)`
-  /* .leaflet-popup {
-    left: -140px !important;
-  } */
+  left: -140px !important;
+  bottom: 10px !important;
 
   .leaflet-popup-content-wrapper {
     background: #fffe;
@@ -24,6 +23,8 @@ export const Container = styled(Popup)`
 `;
 
 export const Content = styled.div`
+  width: 100%;
+
   h3 {
     line-height: 22px;
     color: #6060f0;
@@ -37,10 +38,12 @@ export const Content = styled.div`
     color: #333;
     font-size: 12px;
     font-weight: bold;
+    text-align: justify;
   }
 `;
 
 export const Actions = styled.div`
+  width: 100%;
   flex: 1;
   display: flex;
   justify-content: space-between;

@@ -31,12 +31,14 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
   const [address, setAddress] = useState<Address | null>(null);
   const [complement, setComplement] = useState('');
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const loadOptions = async (inputValue: any, callback: any) => {
     if (inputValue.length < 3) return;
 
-    const responseData: any = await fetchLocal(inputValue);
+    console.log('loadOptions: ', i18n.language);
+
+    const responseData: any = await fetchLocal(inputValue, i18n.language);
     let places: any = [];
 
     responseData.features.map((item: any) => {
