@@ -79,6 +79,7 @@ const Main: React.FC = () => {
           onClick={() => setIsListOpen((prevValue) => !prevValue)}
           title={t('List of saved places')}
           className={isListOpen ? 'active' : ''}
+          disabled={placesToGo.length === 0}
         >
           <FaListUl />
         </button>

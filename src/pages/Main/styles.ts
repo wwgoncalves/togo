@@ -28,7 +28,12 @@ export const Container = styled.div`
 
       transition: background-color 0.2s;
 
-      &:hover,
+      &:disabled {
+        color: #ccc;
+        opacity: 0.7;
+      }
+
+      &:hover:not(:disabled),
       &.active {
         background-color: #6060f0;
         color: #fff;
