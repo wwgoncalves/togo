@@ -39,8 +39,12 @@ const Main: React.FC = () => {
 
   const onDelete = (placeToDelete: Place) => {
     if (window.confirm(`${t('Delete place')} "${placeToDelete.name}"?`)) {
-      if (!placesToGo) return;
-      setPlacesToGo(placesToGo.filter((place) => place !== placeToDelete));
+      setPlacesToGo((prevPlacesToGo) => {
+        if (prevPlacesToGo) {
+          return prevPlacesToGo.filter((place) => place !== placeToDelete);
+        }
+        return prevPlacesToGo;
+      });
     }
   };
 

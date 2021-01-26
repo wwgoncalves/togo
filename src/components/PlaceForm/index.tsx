@@ -93,22 +93,22 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
     if (!address || !name) return;
 
     if (placeOnEditing) {
-      if (placesToGo) {
-        const prevPlacesToGo = [...placesToGo];
-        const placeOnEditingIndex = prevPlacesToGo.indexOf(placeOnEditing);
-        if (placeOnEditingIndex >= 0) {
-          prevPlacesToGo[placeOnEditingIndex] = {
-            id: placeOnEditing.id,
-            name,
-            address: address?.value ?? '',
-            complement,
-            latitude: position?.latitude ?? 0,
-            longitude: position?.longitude ?? 0,
-          };
-
-          setPlacesToGo(prevPlacesToGo);
+      setPlacesToGo((prevPlacesToGo) => {
+        if (prevPlacesToGo) {
+          const placeOnEditingIndex = prevPlacesToGo.indexOf(placeOnEditing);
+          if (placeOnEditingIndex >= 0) {
+            prevPlacesToGo[placeOnEditingIndex] = {
+              id: placeOnEditing.id,
+              name,
+              address: address?.value ?? '',
+              complement,
+              latitude: position?.latitude ?? 0,
+              longitude: position?.longitude ?? 0,
+            };
+          }
         }
-      }
+        return prevPlacesToGo;
+      });
     } else {
       setPlacesToGo([
         ...(placesToGo ?? []),

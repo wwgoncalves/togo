@@ -20,11 +20,16 @@ export const usePersistentState = <T>(
   }, []);
 
   const setPersistentState = useCallback(
-    (valueToPersist: React.SetStateAction<T | undefined>) => {
-      setState(valueToPersist);
+    (newValueOrUpdaterFunction: React.SetStateAction<T | undefined>) => {
+      setState(newValueOrUpdaterFunction);
 
-      const valueToPersistJSON = JSON.stringify(valueToPersist);
-      localStorage.setItem(key, valueToPersistJSON);
+      // Using setState() to take and guarantee newValue just set will be persisted
+      setState((valueToPersist) => {
+        const valueToPersistJSON = JSON.stringify(valueToPersist);
+        localStorage.setItem(key, valueToPersistJSON);
+
+        return valueToPersist;
+      });
     },
     [key]
   );
