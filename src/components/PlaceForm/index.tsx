@@ -100,10 +100,10 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
           prevPlacesToGo[placeOnEditingIndex] = {
             id: placeOnEditing.id,
             name,
-            address: address?.value || '',
+            address: address?.value ?? '',
             complement,
-            latitude: position?.latitude || 0,
-            longitude: position?.longitude || 0,
+            latitude: position?.latitude ?? 0,
+            longitude: position?.longitude ?? 0,
           };
 
           setPlacesToGo(prevPlacesToGo);
@@ -115,10 +115,10 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
         {
           id: uuidv4(),
           name,
-          address: address?.value || '',
+          address: address?.value ?? '',
           complement,
-          latitude: position?.latitude || 0,
-          longitude: position?.longitude || 0,
+          latitude: position?.latitude ?? 0,
+          longitude: position?.longitude ?? 0,
         },
       ]);
     }

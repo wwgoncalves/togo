@@ -31,7 +31,7 @@ const PlaceList: React.FC<PlaceListProps> = ({
 
   return (
     <>
-      {open && placesToGo && placesToGo.length > 0 && (
+      {open && !!placesToGo?.length && (
         <Container>
           <h3>{t('Places saved')}</h3>
           <div>
