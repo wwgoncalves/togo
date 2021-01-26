@@ -18,10 +18,10 @@ import { Container, Actions } from './styles';
 interface PlaceFormProps {
   children?: React.ReactNode;
   position: Position | null;
-  placesToGo: Place[];
+  placesToGo: Place[] | undefined;
   placeOnEditing: Place | null;
   setPosition: React.Dispatch<React.SetStateAction<Position | null>>;
-  setPlacesToGo: React.Dispatch<React.SetStateAction<Place[]>>;
+  setPlacesToGo: React.Dispatch<React.SetStateAction<Place[] | undefined>>;
   setPlaceOnEditing: React.Dispatch<React.SetStateAction<Place | null>>;
   open: boolean;
 }
@@ -93,7 +93,8 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
     if (!address || !name) return;
 
     if (placeOnEditing) {
-      setPlacesToGo((prevPlacesToGo) => {
+      if (placesToGo) {
+        const prevPlacesToGo = [...placesToGo];
         const placeOnEditingIndex = prevPlacesToGo.indexOf(placeOnEditing);
         if (placeOnEditingIndex >= 0) {
           prevPlacesToGo[placeOnEditingIndex] = {
@@ -104,13 +105,13 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
             latitude: position?.latitude || 0,
             longitude: position?.longitude || 0,
           };
-        }
 
-        return prevPlacesToGo;
-      });
+          setPlacesToGo(prevPlacesToGo);
+        }
+      }
     } else {
       setPlacesToGo([
-        ...placesToGo,
+        ...(placesToGo ?? []),
         {
           id: uuidv4(),
           name,

@@ -5,6 +5,7 @@ import { FaSearchLocation, FaListUl } from 'react-icons/fa';
 
 import './../../i18n/config';
 import { Place, Position } from './../../interfaces';
+import { usePersistentState } from '../../hooks/usePersistentState';
 
 import PlaceForm from './../../components/PlaceForm';
 import PlaceList from './../../components/PlaceList';
@@ -16,7 +17,10 @@ const initialPosition = { lat: -30.034647, lng: -51.217659 };
 
 const Main: React.FC = () => {
   const [position, setPosition] = useState<Position | null>(null);
-  const [placesToGo, setPlacesToGo] = useState<Place[]>([]);
+  const [placesToGo, setPlacesToGo] = usePersistentState<Place[]>(
+    '@togo_placesToGo',
+    []
+  );
   const [placeOnEditing, setPlaceOnEditing] = useState<Place | null>(null);
 
   const [map, setMap] = useState<Leaflet.Map | null>(null);
@@ -35,9 +39,8 @@ const Main: React.FC = () => {
 
   const onDelete = (placeToDelete: Place) => {
     if (window.confirm(`${t('Delete place')} "${placeToDelete.name}"?`)) {
-      setPlacesToGo((prevPlacesToGo) =>
-        prevPlacesToGo.filter((place) => place !== placeToDelete)
-      );
+      if (!placesToGo) return;
+      setPlacesToGo(placesToGo.filter((place) => place !== placeToDelete));
     }
   };
 
@@ -78,8 +81,10 @@ const Main: React.FC = () => {
           type="button"
           onClick={() => setIsListOpen((prevValue) => !prevValue)}
           title={t('List of saved places')}
-          className={isListOpen ? 'active' : ''}
-          disabled={placesToGo.length === 0}
+          className={
+            isListOpen && placesToGo && placesToGo.length > 0 ? 'active' : ''
+          }
+          disabled={!placesToGo?.length}
         >
           <FaListUl />
         </button>

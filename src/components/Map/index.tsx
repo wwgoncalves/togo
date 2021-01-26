@@ -61,7 +61,7 @@ interface MapProps {
   children?: React.ReactNode;
   initialPosition: Leaflet.LatLngLiteral;
   position: Position | null;
-  placesToGo: Place[];
+  placesToGo: Place[] | undefined;
   onEdit: (place: Place) => void;
   onDelete: (placeToDelete: Place) => void;
   setMap: React.Dispatch<React.SetStateAction<Leaflet.Map | null>>;

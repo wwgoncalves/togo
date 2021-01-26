@@ -9,7 +9,7 @@ import { Container } from './styles';
 interface PlaceListProps {
   children?: React.ReactNode;
   map: Leaflet.Map | null;
-  placesToGo: Place[];
+  placesToGo: Place[] | undefined;
   open: boolean;
 }
 
@@ -31,7 +31,7 @@ const PlaceList: React.FC<PlaceListProps> = ({
 
   return (
     <>
-      {open && placesToGo.length > 0 && (
+      {open && placesToGo && placesToGo.length > 0 && (
         <Container>
           <h3>{t('Places saved')}</h3>
           <div>
