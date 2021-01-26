@@ -4,7 +4,7 @@ import Main from './pages/Main';
 
 import GlobalStyle from './styles/global';
 
-function App() {
+function App(): JSX.Element {
   return (
     <>
       <GlobalStyle />

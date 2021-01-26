@@ -1,6 +1,8 @@
 export interface Address {
   label: string;
   value: string;
+  coords?: number[];
+  place?: string;
 }
 
 export interface Place {
@@ -15,4 +17,9 @@ export interface Place {
 export interface Position {
   latitude: number;
   longitude: number;
+}
+
+export interface GeocodingLocation {
+  place_name: string;
+  center: number[];
 }

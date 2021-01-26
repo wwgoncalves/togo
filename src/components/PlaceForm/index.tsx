@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import AsyncSelect from 'react-select/async';
+import { OptionsType, ValueType } from 'react-select';
 import { useTranslation } from 'react-i18next';
 
-import { Address, Place, Position } from './../../interfaces';
+import {
+  Address,
+  Place,
+  Position,
+  GeocodingLocation,
+} from './../../interfaces';
 
 import { fetchLocal } from './../../services/mapbox';
 
@@ -35,15 +41,16 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
 
   const { t, i18n } = useTranslation();
 
-  const loadOptions = async (inputValue: any, callback: any) => {
+  const loadOptions = async (
+    inputValue: string,
+    callback: (options: OptionsType<Address>) => void
+  ) => {
     if (inputValue.length < 3) return;
 
-    console.log('loadOptions: ', i18n.language);
+    const responseData = await fetchLocal(inputValue, i18n.language);
+    const places: Address[] = [];
 
-    const responseData: any = await fetchLocal(inputValue, i18n.language);
-    let places: any = [];
-
-    responseData.features.map((item: any) => {
+    responseData.features.map((item: GeocodingLocation) => {
       places.push({
         label: item.place_name,
         value: item.place_name,
@@ -55,7 +62,9 @@ const PlaceForm: React.FC<PlaceFormProps> = ({
     callback(places);
   };
 
-  const handleChangeSelect = (event: any) => {
+  const handleChangeSelect = (event: ValueType<Address, false>) => {
+    if (!event || !event.coords || !event.place) return;
+
     setPosition({
       latitude: event.coords[1],
       longitude: event.coords[0],

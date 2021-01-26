@@ -1,7 +1,7 @@
 import React from 'react';
-import Leaflet from 'leaflet';
+import Leaflet, { LatLngExpression } from 'leaflet';
 import { Marker, TileLayer, useMap } from 'react-leaflet';
-import MarkerClusterGroup from 'react-leaflet-markercluster';
+import MarkerClusterGroup, { MarkerCluster } from 'react-leaflet-markercluster';
 import { useTranslation } from 'react-i18next';
 
 import Popup from './Popup';
@@ -14,19 +14,21 @@ import 'leaflet/dist/leaflet.css';
 import 'react-leaflet-markercluster/dist/styles.min.css';
 import { Container } from './styles';
 
-const SetViewOnPosition = (props: any) => {
-  const { coords } = props;
-
+interface SetViewOnPositionProps {
+  children?: React.ReactNode;
+  coords: LatLngExpression;
+}
+const SetViewOnPosition = ({ coords }: SetViewOnPositionProps) => {
   const map = useMap();
   map.setView(coords, map.getZoom(), { animate: true });
 
   return null;
 };
 
-const createClusterCustomIcon = (cluster: any) => {
-  var childCount = cluster.getChildCount();
+const createClusterCustomIcon = (cluster: MarkerCluster) => {
+  const childCount = cluster.getChildCount();
 
-  var customClassName = 'marker-cluster-custom-';
+  let customClassName = 'marker-cluster-custom-';
   if (childCount < 10) {
     customClassName += 'small';
   } else if (childCount < 100) {

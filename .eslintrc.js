@@ -9,11 +9,18 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
+  ],
 
   plugins: ['prettier'],
 
   rules: {
     'prettier/prettier': 'warn',
+    'no-console': 'warn',
   },
 };
