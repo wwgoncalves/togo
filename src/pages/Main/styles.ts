@@ -41,14 +41,14 @@ export const Container = styled.div`
 
       &.glowing {
         @keyframes glowing {
-          from {
+          0% {
             box-shadow: 0px 0px 0px 0px #6060f0;
           }
-          to {
-            box-shadow: 0px 0px 10px 2px #6060f0;
+          100% {
+            box-shadow: 0px 0px 10px 3px #6060f0;
           }
         }
-        animation: glowing 2s ease-in-out infinite;
+        animation: glowing 2s ease-in-out infinite alternate;
       }
     }
   }
