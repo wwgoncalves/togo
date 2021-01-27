@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Leaflet from 'leaflet';
 import { FaSearchLocation, FaListUl } from 'react-icons/fa';
@@ -28,10 +28,11 @@ const Main: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState<boolean>(false);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
 
+  const [preferredLanguage, setPreferredLanguage] = usePersistentState<string>(
+    '@togo_prefLanguage',
+    'en'
+  );
   const { t, i18n } = useTranslation();
-  const changeLanguage = (languageCode: string) => {
-    i18n.changeLanguage(languageCode);
-  };
 
   const onEdit = (place: Place) => {
     setPlaceOnEditing(place);
@@ -47,6 +48,13 @@ const Main: React.FC = () => {
       });
     }
   };
+
+  useEffect(() => {
+    (async function () {
+      await i18n.changeLanguage(preferredLanguage ?? 'en');
+    })();
+    document.title = t('ToGo: saving your destinations');
+  }, [preferredLanguage]);
 
   return (
     <Container>
@@ -90,10 +98,10 @@ const Main: React.FC = () => {
         >
           <FaListUl />
         </button>
-        {i18n.language === 'en' ? (
+        {preferredLanguage === 'en' ? (
           <button
             type="button"
-            onClick={() => changeLanguage('pt')}
+            onClick={() => setPreferredLanguage('pt')}
             title={'Mudar idioma para português'}
           >
             {'por'}
@@ -101,7 +109,7 @@ const Main: React.FC = () => {
         ) : (
           <button
             type="button"
-            onClick={() => changeLanguage('en')}
+            onClick={() => setPreferredLanguage('en')}
             title={'Change language to English'}
           >
             {'eng'}
