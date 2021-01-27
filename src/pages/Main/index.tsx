@@ -85,7 +85,9 @@ const Main: React.FC = () => {
           type="button"
           onClick={() => setIsFormOpen((prevValue) => !prevValue)}
           title={t('Search and save a place')}
-          className={isFormOpen ? 'active' : ''}
+          className={
+            isFormOpen ? 'active' : !placesToGo?.length ? 'glowing' : ''
+          }
         >
           <FaSearchLocation />
         </button>

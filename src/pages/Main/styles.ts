@@ -38,6 +38,18 @@ export const Container = styled.div`
         background-color: #6060f0;
         color: #fff;
       }
+
+      &.glowing {
+        @keyframes glowing {
+          from {
+            box-shadow: 0px 0px 0px 0px #6060f0;
+          }
+          to {
+            box-shadow: 0px 0px 10px 2px #6060f0;
+          }
+        }
+        animation: glowing 2s ease-in-out infinite;
+      }
     }
   }
 `;
