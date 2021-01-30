@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { set, get } from 'idb-keyval';
 
 export const usePersistentState = <T>(
   key: string,
@@ -10,13 +11,15 @@ export const usePersistentState = <T>(
   const [state, setState] = useState<T | undefined>(undefined);
 
   useEffect(() => {
-    const storedValueJSON = localStorage.getItem(key);
-    if (storedValueJSON) {
-      const storedValue = JSON.parse(storedValueJSON);
-      setState(storedValue);
-    } else {
-      setState(defaultValue);
-    }
+    (async function () {
+      const storedValueJSON = await get(key);
+      if (storedValueJSON) {
+        const storedValue = JSON.parse(storedValueJSON);
+        setState(storedValue);
+      } else {
+        setState(defaultValue);
+      }
+    })();
   }, []);
 
   const setPersistentState = useCallback(
@@ -26,7 +29,7 @@ export const usePersistentState = <T>(
       // Using setState() to take and guarantee newValue just set will be persisted
       setState((valueToPersist) => {
         const valueToPersistJSON = JSON.stringify(valueToPersist);
-        localStorage.setItem(key, valueToPersistJSON);
+        set(key, valueToPersistJSON);
 
         return valueToPersist;
       });
