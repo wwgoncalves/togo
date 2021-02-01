@@ -1,6 +1,7 @@
 {
   "short_name": "ToGo",
   "name": "ToGo: saving your destinations",
+  "description": "A to-go list app.",
   "icons": [
     {
       "src": "windows10/Square71x71Logo.scale-400.png",
@@ -373,6 +374,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#ffffff",
-  "background_color": "#6060f0"
+  "theme_color": "#6060f0",
+  "background_color": "#ffffff"
 }
