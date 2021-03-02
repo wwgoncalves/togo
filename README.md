@@ -3,9 +3,11 @@
   ToGo
 </h1>
 
-> :round_pushpin: ToGo é uma PWA que possibilita você buscar, salvar e editar, facilmente, os lugares que precisa ou gostaria de visitar.
+> :round_pushpin::world_map: ToGo é uma PWA que possibilita você buscar, salvar e editar, facilmente, os lugares que precisa ou gostaria de visitar.
 
-<p align="justify">Essa micro solução foi desenvolvida com o intuito de exercitar a integração com APIs de mapa e geocoding (`Leaflet` e `Mapbox`), o uso do TypeScript na codificação de componentes e a internacionalização de projetos React (através da biblioteca `react-i18next`).</p>
+Essa simples aplicação pode ser utilizada diariamente por profissionais que se deslocam pela cidade durante a jornada de trabalho (vendedores, entregadores etc), ou por qualquer um, por exemplo, no planejamento de viagens.
+
+O app foi desenvolvido com o intuito de exercitar a integração com APIs de mapa e geocoding (`Leaflet` e `Mapbox`), o uso do TypeScript na codificação de componentes e a internacionalização de projetos React (através da biblioteca `react-i18next`). Para ser PWA-compatível, ainda foi utilizada a biblioteca `idb-keyval`, transformando o `IndexedDB` do navegador em uma simples _key-value store_ suficiente para a solução.
 
 ---
 
@@ -19,7 +21,7 @@
 
 ## Demonstração e Uso do Código
 
-Você pode experimentar essa pequena PWA [neste endereço](https://places-togo.web.app/).
+Você pode experimentar essa micro PWA [neste endereço](https://places-togo.web.app/).
 
 Sinta-se livre para utilizar e estender o código deste repositório, bem como implantar esta solução em um espaço próprio.
 
