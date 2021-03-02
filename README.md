@@ -7,7 +7,7 @@
 
 Essa simples aplicação pode ser utilizada diariamente por profissionais que se deslocam pela cidade durante a jornada de trabalho (vendedores, entregadores etc), ou por qualquer um, por exemplo, no planejamento de viagens.
 
-O app foi desenvolvido com o intuito de exercitar a integração com APIs de mapa e geocoding (`Leaflet` e `Mapbox`), o uso do TypeScript na codificação de componentes e a internacionalização de projetos React (através da biblioteca `react-i18next`). Para ser PWA-compatível, ainda foi utilizada a biblioteca `idb-keyval`, transformando o `IndexedDB` do navegador em uma simples _key-value store_ suficiente para a solução.
+O app foi desenvolvido com o intuito de exercitar a integração com APIs de mapa e geocoding (`Leaflet`, `OpenStreetMap` e `Mapbox`), o uso do `TypeScript` na codificação de componentes e a internacionalização de projetos `React` (através da biblioteca `react-i18next`). Para ser `PWA`-compatível, ainda foi utilizada a biblioteca `idb-keyval`, transformando o `IndexedDB` do navegador em uma simples _key-value store_ suficiente para a solução.
 
 ---
 
